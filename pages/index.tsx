@@ -19,7 +19,6 @@ const Home: NextPage = () => {
           {/* Row */}
           {/* Row */}
           {/* Row */}
-          {/* Row */}
         </section>
       </main>
       {/* Modal */}
