@@ -7,10 +7,25 @@ import requests from '../utils/requests';
 
 interface Props {
   netflixOriginals: Movie[];
+  trendingNow: Movie[];
+  topRated: Movie[];
+  actionMovies: Movie[];
+  comedyMovies: Movie[];
+  horrorMovies: Movie[];
+  romanceMovies: Movie[];
+  documentaries: Movie[];
 }
 
-const Home = ({ netflixOriginals }: Props) => {
-  console.log(netflixOriginals);
+const Home = ({
+  netflixOriginals,
+  actionMovies,
+  comedyMovies,
+  documentaries,
+  horrorMovies,
+  romanceMovies,
+  topRated,
+  trendingNow,
+}: Props) => {
   return (
     <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
       <Head>
@@ -19,7 +34,7 @@ const Home = ({ netflixOriginals }: Props) => {
       </Head>
       <Header />
       <main>
-        <Banner />
+        <Banner netflixOriginals={netflixOriginals} />
         <section>
           {/* Row */}
           {/* Row */}
@@ -32,7 +47,6 @@ const Home = ({ netflixOriginals }: Props) => {
     </div>
   );
 };
-
 export default Home;
 
 export const getServerSideProps = async () => {
