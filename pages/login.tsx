@@ -16,6 +16,7 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+
   const onSubmit: SubmitHandler<Inputs> = ({ email, password }) => {
     if (login) {
       // await singIn(email, password)
@@ -80,7 +81,7 @@ function Login() {
 
         <button
           className="w-full rounded bg-[#e50914] py-3 font-semibold"
-          onClick={() => setLogin(true)}
+          onClick={() => setLogin(true)} // 로그인 되는거니까 로그인 상태 true
         >
           Sign In
         </button>
@@ -90,7 +91,7 @@ function Login() {
           <button
             type="submit"
             className=" text-white hover:underline"
-            onClick={() => setLogin(false)}
+            onClick={() => setLogin(false)} //가입해야하기에 로그인 상태가 false
           >
             Sign up now
           </button>
