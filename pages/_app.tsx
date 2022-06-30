@@ -1,13 +1,8 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { AuthProvider } from '../hooks/useAuth';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return;
-  //HOC : High Ordered Component
-  <AuthProvider>
-    <Component {...pageProps} />
-  </AuthProvider>;
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;
