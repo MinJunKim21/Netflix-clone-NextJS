@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           // Not logged in...
           setUser(null);
           setLoading(true);
-          router.push('/login');
+          router.push('/login'); // user가 없으면 (로그아웃)하면 로그인페이지로 푸시
         }
 
         setInitialLoading(false);

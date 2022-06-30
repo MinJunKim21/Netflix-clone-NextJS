@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
 import Row from '../components/Row';
+import useAuth from '../hooks/useAuth';
 import { Movie } from '../typings';
 import requests from '../utils/requests';
 
@@ -27,6 +28,10 @@ const Home = ({
   topRated,
   trendingNow,
 }: Props) => {
+  const { logout, loading } = useAuth();
+
+  if (loading) return null;
+  // 인터넷이 느려서 로딩이 필요한 경우 로딩페이지로 보여줄거를 리턴하면 되지만 여기서는 사용 안해서 null
   return (
     <div className="relative h-screen bg-gradient-to-b  lg:h-[140vh]">
       <Head>
