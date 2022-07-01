@@ -1,7 +1,11 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { modalState } from '../atoms/modalAtoms';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
+import Modal from '../components/Modal';
 import Row from '../components/Row';
 import useAuth from '../hooks/useAuth';
 import { Movie } from '../typings';
@@ -28,7 +32,8 @@ const Home = ({
   topRated,
   trendingNow,
 }: Props) => {
-  const { logout, loading } = useAuth();
+  const { loading } = useAuth();
+  const showModal = useRecoilValue(modalState);
 
   if (loading) return null;
   // 인터넷이 느려서 로딩이 필요한 경우 로딩페이지로 보여줄거를 리턴하면 되지만 여기서는 사용 안해서 null
@@ -52,7 +57,7 @@ const Home = ({
           <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
-      {/* Modal */}
+      {showModal && <Modal />}
     </div>
   );
 };
