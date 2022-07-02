@@ -103,6 +103,42 @@ function Modal() {
             </button>
           </div>
         </div>
+
+        <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
+          <div className="space-y-6 text-lg">
+            <div className="flex items-center text-sm space-x-2">
+              <p className="font-semibold text-green-400">
+                {movie?.vote_average * 10}% Match
+              </p>
+              <p className="font-light">
+                {movie?.release_date || movie?.first_air_date}
+              </p>
+              <div className="flex h-4 item-center justify-center rounded border border-white/40 px-1.5 text-xs">
+                HD
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-x-10 gap-y-4 md:flex-row font-light">
+              <p className="w-5/6">{movie?.overview}</p>
+              <div className="flex flex-col space-y-3 text-sm">
+                <div>
+                  <span className="text-[gray]">Genres: </span>
+                  {genres.map((genre) => genre.name).join(' ')}
+                </div>
+
+                <div>
+                  <span className="text-[gray]">Original Language: </span>
+                  {movie?.original_language}
+                </div>
+
+                <div>
+                  <span className="text-[gray]">Total Votes: </span>
+                  {movie?.vote_count}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </>
       {/* 이 빈 괄호는 mui의 modal 사용법에서 한번 감싸주어야 되는 실행법이 있어서 형식적으로 만든거임 */}
     </MuiModal>
