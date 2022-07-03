@@ -6,6 +6,7 @@ import { modalState } from '../atoms/modalAtoms';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
 import Modal from '../components/Modal';
+import Plans from '../components/Plans';
 import Row from '../components/Row';
 import useAuth from '../hooks/useAuth';
 import { Movie } from '../typings';
@@ -34,11 +35,18 @@ const Home = ({
 }: Props) => {
   const { loading } = useAuth();
   const showModal = useRecoilValue(modalState);
+  const subscription = false;
 
-  if (loading) return null;
+  if (loading || subscription === null) return null;
   // 인터넷이 느려서 로딩이 필요한 경우 로딩페이지로 보여줄거를 리턴하면 되지만 여기서는 사용 안해서 null
+
+  if (!subscription) return <Plans />;
   return (
-    <div className="relative h-screen bg-gradient-to-b  lg:h-[140vh]">
+    <div
+      className={`relative h-screen bg-gradient-to-b  lg:h-[140vh] ${
+        showModal && '!h-screen overflow-hidden'
+      }`}
+    >
       <Head>
         <title>Home - Netflix</title>
         <link rel="icon" href="/favicon.ico" />
