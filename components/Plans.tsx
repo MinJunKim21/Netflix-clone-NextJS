@@ -50,11 +50,7 @@ function Plans() {
         </ul>
 
         <div className="mt-4 flex flex-col space-y-4">
-          <div className="flex w-full items-center justify-center self-end md:w-3/5">
-            <div className="planBox">standard</div>
-            <div className="planBox">standard</div>
-            <div className="planBox">standard</div>
-          </div>
+          <div className="flex w-full items-center justify-center self-end md:w-3/5"></div>
           <button>Subscribe</button>
         </div>
       </main>
