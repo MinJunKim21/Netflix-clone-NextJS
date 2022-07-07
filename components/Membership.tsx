@@ -23,7 +23,7 @@ function Membership() {
         <button
           disabled={isBillingLoading || !subscription}
           className="h-10 w-3/5 whitespace-nowrap bg-gray-300 py-2 text-sm font-medium text-black shadow-md hover:bg-gray-200 md:w-4/5"
-          // onClick={manageSubscription}
+          onClick={manageSubscription}
         >
           {isBillingLoading ? (
             <Loader color="dark:fill-[#50914]" />
