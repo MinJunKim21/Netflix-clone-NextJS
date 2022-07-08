@@ -25,7 +25,7 @@ interface Props {
   horrorMovies: Movie[];
   romanceMovies: Movie[];
   documentaries: Movie[];
-  products: Product;
+  products: Product[];
 }
 
 const Home = ({
