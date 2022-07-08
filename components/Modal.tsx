@@ -97,7 +97,7 @@ function Modal() {
   const handleList = async () => {
     if (addedToList) {
       await deleteDoc(
-        doc(db, 'customers', user.uid, 'myList', movie?.id.toString()!)
+        doc(db, 'customers', user!.uid, 'myList', movie?.id.toString()!)
       );
 
       toast(

@@ -6,7 +6,7 @@ import Thumbnail from './Thumbnail';
 
 interface Props {
   title: string;
-  movies: Movie | DocumentData; // when using firebase
+  movies: Movie[] | DocumentData[]; // when using firebase
 }
 
 function Row({ title, movies }: Props) {
