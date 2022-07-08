@@ -15,10 +15,9 @@ import { Element, Genre } from '../typings';
 import ReactPlayer from 'react-player/lazy';
 import { FaPlay } from 'react-icons/fa';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
-import {db} from '../firebase'
+import { db } from '../firebase';
 import useAuth from '../hooks/useAuth';
 import toast, { Toaster } from 'react-hot-toast';
-
 
 function Modal() {
   const [showModal, setShowModal] = useRecoilState(modalState);
@@ -26,8 +25,8 @@ function Modal() {
   const [trailer, setTrailer] = useState('');
   const [genres, setGenres] = useState<Genre[]>([]);
   const [muted, setMuted] = useState(true);
-  const [addedToList, setAddedToList] = useState(false)
-  const {user} = useAuth()
+  const [addedToList, setAddedToList] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     if (!movie) return;
@@ -60,22 +59,32 @@ function Modal() {
   }, [movie]);
   //modal을 눌러서 실행될 때마다, movie 값이 바뀌고 useEffect가 발동되어서 video를 fetch해와서 trailer를 사용할 수 있게됨.
 
-  const handleList = aysnc () => {
-    if(addedToList){
+  const handleList = async () => {
+    if (addedToList) {
       await deleteDoc(
         doc(db, 'customers', user.uid, 'myList', movie?.id.toSting()!)
-      )
-      
-      toast(`${movie?.title || movie?.original_name} has been removed from My List`, {
-        duration:8000,
-      })
-    } else {
-      await setDoc(doc(db,'customers', user!.uid, 'myList', movie?.id.toString()!), {...movie})
+      );
 
-      toast(`${movie?.title || movie?.original_name} has been added from My List`, {
-        duration:8000,
+      toast(
+        `${movie?.title || movie?.original_name} has been removed from My List`,
+        {
+          duration: 8000,
+        }
+      );
+    } else {
+      await setDoc(
+        doc(db, 'customers', user!.uid, 'myList', movie?.id.toString()!),
+        { ...movie }
+      );
+
+      toast(
+        `${movie?.title || movie?.original_name} has been added to My List`,
+        {
+          duration: 8000,
+        }
+      );
     }
-  }
+  };
 
   const handleClose = () => {
     setShowModal(false);
@@ -88,7 +97,7 @@ function Modal() {
       className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md scrollbar-hide"
     >
       <>
-      <Toaster position='bottom-center' />
+        <Toaster position="bottom-center" />
         <button
           onClick={handleClose}
           className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#181818] hover:bg-[#181818]"
