@@ -3,13 +3,14 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { modalState } from '../atoms/modalAtoms';
+import { modalState, movieState } from '../atoms/modalAtoms';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
 import Modal from '../components/Modal';
 import Plans from '../components/Plans';
 import Row from '../components/Row';
 import useAuth from '../hooks/useAuth';
+import useList from '../hooks/useList';
 import useSubscription from '../hooks/useSubscription';
 import payments from '../lib/stripe';
 import { Movie } from '../typings';
@@ -41,6 +42,8 @@ const Home = ({
   const { loading, user } = useAuth();
   const showModal = useRecoilValue(modalState);
   const subscription = useSubscription(user);
+  const movie = useRecoilValue(movieState);
+  const list = useList(user?.uid);
 
   if (loading || subscription === null) return null;
   // 인터넷이 느려서 로딩이 필요한 경우 로딩페이지로 보여줄거를 리턴하면 되지만 여기서는 사용 안해서 null
@@ -64,6 +67,7 @@ const Home = ({
           <Row title="Top Rated" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
           {/* My List Component */}
+          {list.length > 0 && <Row title="My List" movies={list} />}
 
           <Row title="Comedies" movies={comedyMovies} />
           <Row title="Scary Movies" movies={horrorMovies} />
